@@ -1,0 +1,18 @@
+name: cicd
+on:
+  pull_request:
+  push:
+jobs:
+  sandbox-job:
+    name: sandbox jon
+    runs-on: ubuntu-latest
+    steps:
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          fields: job,author
+          text: Hello world from sandbox job!
+          author_name: ""
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SLACK_WEBHOOK_URL: "${{ secrets.SLACK_WEBHOOK_URL }}"
